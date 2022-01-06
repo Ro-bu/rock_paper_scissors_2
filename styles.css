@@ -1,0 +1,81 @@
+body{
+    min-height: 100vh;
+    background: rgb(30,49,75);
+    background: linear-gradient(0deg, rgba(30,49,75,1) 0%, rgba(47,76,108,1) 64%, rgba(61,128,163,1) 100%); 
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#header{
+    text-align: center;
+    font-weight: 700;
+    color: white;
+    font-size: 2em;
+    padding-top: 100px;
+}
+#header h1{
+    margin: 0;
+}
+#playarea{
+    display:flex;
+    flex-direction: column;
+    color: white;
+    font-size: 1.5em;
+    font-weight: 300;
+    align-items: center;
+}
+#buttonarea{
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+#playarea h3{
+    padding: 0 0 50px 0;
+}
+.playbutton{
+    width: 250px;
+    height: 250px;
+    border: 5px solid white;
+    border-radius: 5%;
+}
+#footer{
+    color:white;
+    display: flex;
+    flex-direction: column;
+}
+#scoreboard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 400px;
+    padding: 0px;
+}
+.scorebox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    gap: 30px;
+}
+.score{
+    font-size: 50px;
+    padding: 0;
+    margin: 0;
+}
+.scoretext{
+    font-size: 24px;
+    padding: 0px;
+    margin: 0;
+}
+#footertag{
+    text-align: center;
+    text-decoration: none;
+    padding: 80px 0 10px 0;
+}
+#footertag a{
+    text-decoration: none;
+    color: white;
+}
