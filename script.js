@@ -1,3 +1,10 @@
+let playerScore = 0;
+let computerScore = 0;
+document.getElementById("rock").addEventListener("click", function(){
+    playWith("rock");
+});
+
+// MAKE THE COMPUTER PICK
 function computerChoice(){
     let numberChoice = Math.floor(Math.random()*3);
     let computerSelection;
@@ -14,8 +21,9 @@ function computerChoice(){
     }
     return computerSelection;
 }
-function playRound(){
-    let playerSelection = prompt("rock, paper, or scissors?").toLowerCase();
+// CHOOSE THE WINNER OF THE ROUND
+function playRound(playerChoice){
+    let playerSelection = playerChoice;
     let computerSelection = computerChoice();
     let winner;
     if(playerSelection === computerSelection){
@@ -35,31 +43,28 @@ function playRound(){
     }
     return winner;
 }
+// RESET EVERYTHING ON START GAME CLICK
 function game(){
-    let playerScore = 0;
-    let computerScore = 0;
-    let roundWinner;
-    let gameWinner;
-    for( let i = 0; i<5; i++){
-        roundWinner = playRound();
-        switch(roundWinner){
-            case "tie":
-                break;
-            case "computer":
-                computerScore = computerScore+1;
-                break;
-            case "player":
-                playerScore = playerScore+1;
-                break;
-        }
+    playerScore = 0;
+    document.getElementById("playerscore").textContent=playerScore
+    computerScore = 0;
+    document.getElementById("computerscore").textContent=computerScore
+}
+// PLAY A ROUND ON BUTTON CLICK
+function playWith(pick){
+    let roundWinner = playRound(pick);
+    scoreUp(roundWinner);
+}
+// INCREASE ROUND WINNERS SCORE
+function scoreUp(winner){
+    console.log(winner);
+    if(winner == "player"){
+        playerScore++;
+        document.getElementById("playerscore").textContent=playerScore;
+    } else if(winner =="computer"){
+        computerScore++;
+        document.getElementById("computerscore").textContent=computerScore;
+    } else{
+        return;
     }
-    if( playerScore === computerScore){
-        gameWinner = "tie";
-        alert("it's a tie!");
-    } else if(playerScore>computerScore){
-        alert("You won the game!");
-    }else{
-        alert("The computer won the game");
-    }
-
 }
