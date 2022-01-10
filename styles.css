@@ -94,3 +94,9 @@ body{
     text-decoration: none;
     color: white;
 }
+#roundwinner{
+    font-size: 32px;
+}
+#roundwinnertext{
+    text-align: center;
+}

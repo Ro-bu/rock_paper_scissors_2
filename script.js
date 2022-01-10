@@ -1,9 +1,16 @@
 let playerScore = 0;
 let computerScore = 0;
+let roundWinnerText  = document.getElementById("roundwinner");
+roundWinnerText.textContent = "";
 document.getElementById("rock").addEventListener("click", function(){
     playWith("rock");
 });
-
+document.getElementById("paper").addEventListener("click", function(){
+    playWith("paper");
+});
+document.getElementById("scissors").addEventListener("click", function(){
+    playWith("scissors");
+});
 // MAKE THE COMPUTER PICK
 function computerChoice(){
     let numberChoice = Math.floor(Math.random()*3);
@@ -54,6 +61,7 @@ function game(){
 function playWith(pick){
     let roundWinner = playRound(pick);
     scoreUp(roundWinner);
+    animateWinner(roundWinnerText);
 }
 // INCREASE ROUND WINNERS SCORE
 function scoreUp(winner){
@@ -61,10 +69,27 @@ function scoreUp(winner){
     if(winner == "player"){
         playerScore++;
         document.getElementById("playerscore").textContent=playerScore;
+        roundWinnerText.textContent = "PLAYER";
     } else if(winner =="computer"){
         computerScore++;
         document.getElementById("computerscore").textContent=computerScore;
+        roundWinnerText.textContent = "COMPUTER";
     } else{
-        return;
+        roundWinnerText.textContent = "TIE";
+    }
+}
+// ROUNDWINNER TEXT ANIMATION
+    function animateWinner(e){
+        transition.begin(e, [
+            ["font-size", "32px", "64px", "0.5s", "linear"],
+            ["opacity", "1", "0", "0,5s", "linear"]
+        ]);
+    }
+// CHECK THE SCORE FOR WINNER
+function scoreChecker(){
+    if(playerScore >4){
+
+    } else if(computerScore>4){
+        
     }
 }
