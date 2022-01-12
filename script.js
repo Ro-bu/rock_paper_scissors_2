@@ -2,6 +2,7 @@ let playerScore = 0;
 let computerScore = 0;
 let roundWinnerText  = document.getElementById("roundwinner");
 roundWinnerText.textContent = "";
+// PLAY ROUND WHEN CLICKED ON ROCK PAPER SCISSORS
 document.getElementById("rock").addEventListener("click", function(){
     playWith("rock");
 });
@@ -10,6 +11,16 @@ document.getElementById("paper").addEventListener("click", function(){
 });
 document.getElementById("scissors").addEventListener("click", function(){
     playWith("scissors");
+});
+// FUNCTION TO HIDE PLAY AREA
+function hideGameContent(){
+    document.getElementById("playarea").style.display = ("none");
+    document.getElementById("scoreboard").style.display = ("none");
+}
+hideGameContent();
+// GAME FUNCTION ON START GAME BUTTON CLICK
+document.getElementById("startgame").addEventListener("click",function(){
+    game();
 });
 // MAKE THE COMPUTER PICK
 function computerChoice(){
@@ -53,15 +64,20 @@ function playRound(playerChoice){
 // RESET EVERYTHING ON START GAME CLICK
 function game(){
     playerScore = 0;
-    document.getElementById("playerscore").textContent=playerScore
+    document.getElementById("playerscore").textContent=playerScore;
     computerScore = 0;
-    document.getElementById("computerscore").textContent=computerScore
+    document.getElementById("computerscore").textContent=computerScore;
+    document.getElementById("playarea").style.display = ("flex");
+    document.getElementById("scoreboard").style.display = ("flex");
+    document.getElementById("startgame").style.display = ("none");
+    document.getElementById("winnertext").textContent="";
+
 }
 // PLAY A ROUND ON BUTTON CLICK
 function playWith(pick){
     let roundWinner = playRound(pick);
     scoreUp(roundWinner);
-    animateWinner(roundWinnerText);
+    scoreChecker();
 }
 // INCREASE ROUND WINNERS SCORE
 function scoreUp(winner){
@@ -78,18 +94,25 @@ function scoreUp(winner){
         roundWinnerText.textContent = "TIE";
     }
 }
-// ROUNDWINNER TEXT ANIMATION
-    function animateWinner(e){
-        transition.begin(e, [
-            ["font-size", "32px", "64px", "0.5s", "linear"],
-            ["opacity", "1", "0", "0,5s", "linear"]
-        ]);
-    }
 // CHECK THE SCORE FOR WINNER
 function scoreChecker(){
     if(playerScore >4){
-
+        gameEnd("player");
     } else if(computerScore>4){
-        
+        gameEnd("computer");
+    }
+};
+// DISPLAY WINNER AND HIDE GAME SECTION
+function gameEnd(a){
+    if(a == "player"){
+        document.getElementById("playarea").style.display = ("none");
+        document.getElementById("scoreboard").style.display = ("none");
+        document.getElementById("startgame").style.display = ("flex");
+        document.getElementById("winnertext").textContent="YOU HAVE WON THE GAME";
+    } else {
+        document.getElementById("playarea").style.display = ("none");
+        document.getElementById("scoreboard").style.display = ("none");
+        document.getElementById("startgame").style.display = ("flex");
+        document.getElementById("winnertext").textContent="YOU HAVE LOST THE GAME";
     }
 }
